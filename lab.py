@@ -1,2 +1,15 @@
 import cv2
-image = cv2.imread("")
+image = cv2.imread("sample.jpg")
+if image is None:
+    print("Error in Acquiring image")
+    exit()
+gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
+blur = cv2.GaussianBlur(gray,(5,5),0)
+equalized = cv2.equalizeHist(blur)
+resize = cv2.resize(equalized,(300,300))
+cv2.imshow("Gray", gray)
+cv2.imshow("Blur", blur)
+cv2.imshow("Equalized", equalized)
+cv2.imshow("Resized", resize)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
